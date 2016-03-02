@@ -1,4 +1,4 @@
-package com.pichangetheworld.programmingchallenges;
+package com.pichangetheworld.programmingchallenges.problems.inclusivelists;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.pichangetheworld.programmingchallenges.R;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -50,7 +52,7 @@ public class InclusiveListsProblemFragment extends Fragment {
     }
 
     @OnClick(R.id.calculate)
-    void calculateDiff() {
+    void calculate() {
         resultList.clear();
         resultList.addAll(new DiffFinder().findDiff(listA, listB));
         resultAdapter.notifyDataSetChanged();
