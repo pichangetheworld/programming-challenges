@@ -7,21 +7,36 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Base Activity class
  */
 public class ProblemActivity extends AppCompatActivity {
     @Bind(R.id.list_a)
-    ListView listA;
+    ListView listViewA;
     @Bind(R.id.list_b)
-    ListView listB;
+    ListView listViewB;
 
     @Bind(R.id.result_list)
-    ListView resultList;
+    ListView resultListView;
+
+    @OnClick(R.id.calculate)
+    void calculateDiff() {
+        resultList.clear();
+        resultList.addAll(new DiffFinder().findDiff(listA, listB));
+        resultAdapter.notifyDataSetChanged();
+    }
+
+    List<String> listA = new ArrayList<>();
+    List<String> listB = new ArrayList<>();
+    List<String> resultList = new ArrayList<>();
+    RandomAdapter resultAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +45,13 @@ public class ProblemActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        RandomAdapter adapterA = new RandomAdapter(this);
-        RandomAdapter adapterB = new RandomAdapter(this);
-        RandomAdapter resultAdapter = new RandomAdapter(this);
+        RandomAdapter adapterA = new RandomAdapter(this, listA);
+        RandomAdapter adapterB = new RandomAdapter(this, listB);
+        resultAdapter = new RandomAdapter(this, resultList);
 
-        listA.setAdapter(adapterA);
-        listB.setAdapter(adapterB);
-        resultList.setAdapter(resultAdapter);
+        listViewA.setAdapter(adapterA);
+        listViewB.setAdapter(adapterB);
+        resultListView.setAdapter(resultAdapter);
 
         for (int i = 0; i < 5; ++i) {
             String str = generateRandomString(5);
@@ -62,8 +77,8 @@ public class ProblemActivity extends AppCompatActivity {
     }
 
     private static class RandomAdapter extends ArrayAdapter<String> {
-        public RandomAdapter(Context context) {
-            super(context, android.R.layout.simple_list_item_1);
+        public RandomAdapter(Context context, List<String> stringList) {
+            super(context, android.R.layout.simple_list_item_1, stringList);
         }
     }
 }
