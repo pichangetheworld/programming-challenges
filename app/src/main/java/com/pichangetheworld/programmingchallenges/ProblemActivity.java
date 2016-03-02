@@ -26,6 +26,25 @@ public class ProblemActivity extends AppCompatActivity {
     @Bind(R.id.result_list)
     ListView resultListView;
 
+    @OnClick(R.id.reset)
+    void reset() {
+        listA.clear();
+        listB.clear();
+        resultList.clear();
+
+        for (int i = 0; i < 5; ++i) {
+            String str = generateRandomString(5);
+            listB.add(str);
+
+            if (rnd.nextBoolean()) {
+                listA.add(str);
+            }
+        }
+        adapterA.notifyDataSetChanged();
+        adapterB.notifyDataSetChanged();
+        resultAdapter.notifyDataSetChanged();
+    }
+
     @OnClick(R.id.calculate)
     void calculateDiff() {
         resultList.clear();
@@ -36,6 +55,8 @@ public class ProblemActivity extends AppCompatActivity {
     List<String> listA = new ArrayList<>();
     List<String> listB = new ArrayList<>();
     List<String> resultList = new ArrayList<>();
+    RandomAdapter adapterA;
+    RandomAdapter adapterB;
     RandomAdapter resultAdapter;
 
     @Override
@@ -45,24 +66,15 @@ public class ProblemActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        RandomAdapter adapterA = new RandomAdapter(this, listA);
-        RandomAdapter adapterB = new RandomAdapter(this, listB);
+        adapterA = new RandomAdapter(this, listA);
+        adapterB = new RandomAdapter(this, listB);
         resultAdapter = new RandomAdapter(this, resultList);
 
         listViewA.setAdapter(adapterA);
         listViewB.setAdapter(adapterB);
         resultListView.setAdapter(resultAdapter);
 
-        for (int i = 0; i < 5; ++i) {
-            String str = generateRandomString(5);
-            adapterB.add(str);
-
-            if (rnd.nextBoolean()) {
-                adapterA.add(str);
-            }
-        }
-        adapterA.notifyDataSetChanged();
-        adapterB.notifyDataSetChanged();
+        reset();
     }
 
     private static final String AB = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
