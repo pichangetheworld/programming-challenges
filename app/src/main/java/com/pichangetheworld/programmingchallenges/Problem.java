@@ -9,21 +9,21 @@ import android.support.v4.app.Fragment;
 public enum Problem {
     INCLUSIVE_LISTS;
 
-    public String getTitle() {
+    public int getTitle() {
         switch (this) {
             case INCLUSIVE_LISTS:
-                return "Inclusive Lists";
+                return R.string.problem_inclusive_lists;
             default:
-                return "Default Problem";
+                return R.string.default_problem;
         }
     }
 
-    public String getDescription() {
+    public int getDescription() {
         switch (this) {
             case INCLUSIVE_LISTS:
-                return "Goal: Given two lists ListA and ListB, return the set of elements in ListB not in ListA";
+                return R.string.problem_inclusive_lists_desc;
             default:
-                return "";
+                return 0;
         }
     }
 

@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Programming Challenges</string>
     <string name="action_settings">Settings</string>
+
+    <!--Problems-->
+    <string name="problem_inclusive_lists">Inclusive Lists</string>
+    <string name="problem_inclusive_lists_desc">Goal: Given two lists ListA and ListB, return the set of elements in ListB not in ListA</string>
+
+    <string name="default_problem">Default Problem</string>
 </resources>

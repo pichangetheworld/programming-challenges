@@ -24,7 +24,7 @@ public class ProblemActivity extends AppCompatActivity {
         Problem problem = (Problem) getIntent().getSerializableExtra(EXTRA_PROBLEM_ENUM);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(android.R.id.content, InclusiveListsProblemFragment.getInstance())
+                .replace(android.R.id.content, problem.getFragment())
                 .commit();
     }
 }
