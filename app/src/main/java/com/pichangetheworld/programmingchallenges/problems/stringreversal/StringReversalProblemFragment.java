@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.pichangetheworld.programmingchallenges.R;
-
-import java.security.SecureRandom;
+import com.pichangetheworld.programmingchallenges.utils.StringUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,13 +29,15 @@ public class StringReversalProblemFragment extends Fragment {
         problemStringView.setText("");
         resultStringView.setText("");
 
-        String str = generateRandomString(5);
+        String str = StringUtils.generateRandomString(12);
         problemStringView.setText(str);
     }
 
     @OnClick(R.id.calculate)
     void calculate() {
-
+        String input = problemStringView.getText().toString();
+        String result = new StringReverser().reverseString(input);
+        resultStringView.setText(result);
     }
 
     public static Fragment getInstance() {
@@ -56,16 +57,5 @@ public class StringReversalProblemFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         reset();
-    }
-
-    private static final String AB = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    static SecureRandom rnd = new SecureRandom();
-
-    private String generateRandomString(int length) {
-        StringBuilder sb = new StringBuilder(length);
-        for (int i = 0; i < length; i++)
-            sb.append(AB.charAt(rnd.nextInt(AB.length())));
-        return sb.toString();
-
     }
 }
