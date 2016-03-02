@@ -24,6 +24,19 @@ public class DiffFinder implements DiffFinderInterface {
     @Override
     public List<String> findDiff(List<String> listA, List<String> listB) {
         // TODO implement this
+
+        for (int i = 0; i < listA.size(); i++) {
+            String aItem = listA.get(i);
+
+            for (int j = 0; j < listB.size(); j++) {
+                String bItem = listB.get(j);
+
+                if (aItem.equals(bItem)) {
+                    listB.remove(j);
+                }
+            }
+        }
+
         return listB;
     }
 }
