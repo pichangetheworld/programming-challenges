@@ -16,15 +16,15 @@ public class StringReverser implements StringReverserInterface {
      * e.g. If input = "onetwothree"
      *      --> return "eerhtowteno"
      *
-     * e.g. If input = ""
-     *      --> return ""
-     *
      * e.g. If input = "aaa"
      *      --> return "aaa"
+     *
+     * e.g. If input = ""
+     *      --> return ""
      */
     @Override
     public String reverseString(String input) {
         // TODO implement this
-        return null;
+        return "";
     }
 }
