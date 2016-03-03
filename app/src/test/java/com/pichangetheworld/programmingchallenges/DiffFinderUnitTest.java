@@ -66,4 +66,12 @@ public class DiffFinderUnitTest {
                 Arrays.asList("one", "two", "three", "four", "five"));
         assertArrayEquals(result.toArray(), new String[]{"one", "two", "three", "four", "five"});
     }
+
+    @Test
+    public void duplicateTest() throws Exception {
+        List<String> result = diffFinder.findDiff(
+                Collections.singletonList("aaa"),
+                Arrays.asList("aa", "aaa", "aaa", "aaa", "aaaa"));
+        assertArrayEquals(result.toArray(), new String[]{"aa", "aaaa"});
+    }
 }
