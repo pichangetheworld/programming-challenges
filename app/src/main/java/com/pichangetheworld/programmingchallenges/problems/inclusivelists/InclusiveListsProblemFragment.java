@@ -1,4 +1,4 @@
-package com.pichangetheworld.programmingchallenges;
+package com.pichangetheworld.programmingchallenges.problems.inclusivelists;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.pichangetheworld.programmingchallenges.R;
+import com.pichangetheworld.programmingchallenges.utils.StringUtils;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -30,6 +33,8 @@ public class InclusiveListsProblemFragment extends Fragment {
     @Bind(R.id.result_list)
     ListView resultListView;
 
+    SecureRandom rnd = new SecureRandom();
+
     @OnClick(R.id.reset)
     void reset() {
         listA.clear();
@@ -37,7 +42,7 @@ public class InclusiveListsProblemFragment extends Fragment {
         resultList.clear();
 
         for (int i = 0; i < 5; ++i) {
-            String str = generateRandomString(5);
+            String str = StringUtils.generateRandomString(5);
             listB.add(str);
 
             if (rnd.nextBoolean()) {
@@ -50,7 +55,7 @@ public class InclusiveListsProblemFragment extends Fragment {
     }
 
     @OnClick(R.id.calculate)
-    void calculateDiff() {
+    void calculate() {
         resultList.clear();
         resultList.addAll(new DiffFinder().findDiff(listA, listB));
         resultAdapter.notifyDataSetChanged();
@@ -88,17 +93,6 @@ public class InclusiveListsProblemFragment extends Fragment {
         resultListView.setAdapter(resultAdapter);
 
         reset();
-    }
-
-    private static final String AB = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    static SecureRandom rnd = new SecureRandom();
-
-    private String generateRandomString(int length) {
-        StringBuilder sb = new StringBuilder(length);
-        for (int i = 0; i < length; i++)
-            sb.append(AB.charAt(rnd.nextInt(AB.length())));
-        return sb.toString();
-
     }
 
     private static class RandomAdapter extends ArrayAdapter<String> {

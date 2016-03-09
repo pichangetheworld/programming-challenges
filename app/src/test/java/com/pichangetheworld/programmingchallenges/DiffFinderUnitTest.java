@@ -1,5 +1,7 @@
 package com.pichangetheworld.programmingchallenges;
 
+import com.pichangetheworld.programmingchallenges.problems.inclusivelists.DiffFinder;
+
 import org.junit.Test;
 
 import java.util.ArrayList;

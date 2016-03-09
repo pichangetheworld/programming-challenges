@@ -1,4 +1,4 @@
-package com.pichangetheworld.programmingchallenges;
+package com.pichangetheworld.programmingchallenges.problems.inclusivelists;
 
 import java.util.List;
 
