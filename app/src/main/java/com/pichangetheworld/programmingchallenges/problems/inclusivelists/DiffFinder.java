@@ -8,6 +8,7 @@ import java.util.List;
 public class DiffFinder implements DiffFinderInterface {
     /*
      * Returns a list of strings that are present in listB but not in listA
+     * NOTE: Do NOT change ListA or ListB!!!
      *
      * e.g. If ListA = {"one", "three"}, ListB = {"one", "two", "three", "four", "five"}
      *      --> return {"two", "four", "five"}

@@ -25,6 +25,6 @@ public class StringReverser implements StringReverserInterface {
     @Override
     public String reverseString(String input) {
         // TODO implement this
-        return "";
+        return input;
     }
 }
